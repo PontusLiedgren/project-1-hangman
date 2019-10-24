@@ -1,35 +1,51 @@
+# hangman.py
+# 
+# Author: Pontus Liedgren, 2019
+# https://github.com/PontusLiedgren/project-1-hangman
+
 import random
 
-#Hälsning
+# hälsning
 name = input("Vad heter du? ")
-print("Välkommen " + name + "! " + "Är du redo att spela Hänga Gubben? ")
+print("Välkommen " + name + "! " + "Är du redo att spela Hängagubbe? ")
 
-#Ordlista, omgångar 
+# ordlista, omgångar 
 hangman_words = ['gubbe', 'by', 'tyskland', 'fönster', 'nationalencyclopedi', 'dator', 'brontosaurus', 'bänkpress']
 secret_word = random.choice(hangman_words)  
-turns = 2*len(secret_word)
+turns = 12
 guessed_letters = []
 
-#funktion
-for user_guess in secret_word:
-    print("_ " *(len(secret_word)))
+isPlaying = True
+
+# funktion för gissade bokstäver. 
+def print_secret_word():
+    for letter in secret_word:
+        if letter in guessed_letters:
+            print(letter.upper(), end=" ")
+        else:
+            print("_", end=" ")
+
+    print("")          
+
+# huvudloop
+while isPlaying:
+    print_secret_word()
+
     guess = input("Guess a letter: ").lower()
-    if guess not in secret_word:
+    guessed_letters.append(guess)
+
+    if guess in secret_word:
+        print("Korrekt! Du har " + str(turns) + " kvar")
+    else:
         turns -= 1
-        print("Wrong! You have " + str(turns) + " guesses left.")
-    elif guess in secret_word:
-        print("Correct! You have " + str(turns) + " guesses left.")
-        print(guess in secret_word)
-    for guess in guessed_letters:
-        print("Ops, du har redan sagt den bokstaven!")
-        guessed_letters.append(guess)
+        print("Fel! Du har " + str(turns) + " kvar")
+    if turns == 0:
+        isPlaying = False
+        print("Du förlorade! Ordet var: " + secret_word)
+    for letter in secret_word: 
+        if letter in guessed_letters:
 
-
-if turns == 0:
-    print("You lose")
-else:
-    print()
-
-
+# För nästa gång: kolla om bokstäverna i secret_word finns i guessed_letters om alla finns isPlaying = False         
+        
 
 
