@@ -7,15 +7,17 @@ import random
 
 # hälsning
 name = input("Vad heter du? ")
-print("Välkommen " + name + "! " + "Är du redo att spela Hängagubbe? ")
+print(50*"\n" + "Välkommen " + name + "! " + "Är du redo att spela Hängagubbe? \n")
 
-# ordlista, omgångar 
+# hemligt_ord, omgångar, listor 
 hangman_words = ['gubbe', 'by', 'tyskland', 'fönster', 'nationalencyclopedi', 'dator', 'brontosaurus', 'bänkpress']
 secret_word = random.choice(hangman_words)  
 turns = 12
 guessed_letters = []
 correct_letters = []
 isPlaying = True
+
+
 
 # funktion för gissade bokstäver. 
 def print_secret_word():
@@ -25,21 +27,24 @@ def print_secret_word():
         else:
             print("_", end=" ")
 
-    print("")          
+    print("")
+    print("\n")          
 
 # huvudloop
 while isPlaying:
     print_secret_word()
 
     guess = input("Guess a letter: ").lower()
+    guessed_letter_count_secret_word = secret_word.count(guess)
     if len(guess) > 1: 
         print("Ogiltig inmatning! \n")
-    elif len(guess) == 1:
+    if len(guess) == 1:
         if guess not in guessed_letters:
             guessed_letters.append(guess)
             if guess in secret_word:
-                correct_letters.append(guess)
-                print("Korrekt! Du har " + str(turns) + " gissnigar kvar. \n")
+                print("Korrekt! Du har " + str(turns) + " gissningar kvar. \n")
+                for letter in range(guessed_letter_count_secret_word):
+                    correct_letters.append(guess) 
                 if(len(correct_letters) == len(secret_word)):
                     isPlaying = False
                     print("Bra jobbat du räddade gubben! Ordet var: " + secret_word.upper())
@@ -47,19 +52,10 @@ while isPlaying:
                 turns -= 1
                 print("Fel! Du har " + str(turns) + " gissningar kvar. \n")
         else: 
-            print("Du har redan gissat: " + guess)
+            print("Du har redan gissat: " + guess + " \n")         
     if turns == 0:
         isPlaying = False
         print("Oops! Där hängdes en gubbe! Ordet var: " + secret_word.upper()) 
-
-    
-
-    # for letters in secret_word:   
-    #     if letter == guessed_letters:
-    #         isPlaying = False
-    #         print("Bra jobbat du klarade det! Ordet var: " + secret_word.upper())
-            
-
-# För nästa gång: kolla om bokstäverna i secret_word finns i guessed_letters om alla finns isPlaying = False         
+        
         
 
