@@ -7,7 +7,6 @@ import random
 
 # hälsning
 name = input("Vad heter du? ")
-# print("\n" + "Välkommen " + name + "! " + "Är du redo att spela Hängagubbe? \n")
 
 # hemligt_ord, omgångar, listor 
 hangman_words = ['gubbe', 'by', 'tyskland', 'fönster', 'nationalencyclopedi', 'dator', 'brontosaurus', 'bänkpress']
@@ -20,7 +19,7 @@ isPlaying = True
 
 # regler
 print(
-    "Hejsan, " + name + "!" + " Välkommen till hängagubbe! " 
+    "\n\n\nHejsan, " + name.upper() + "!" + " Välkommen till hängagubbe! " 
     + "Målet med spelet är att lista ut det hemliga ordet.\n" 
     + "- Du har 12 gissningar på dig!\n" 
     + "- Om gissningarna tar slut innan du har listat ut ordet, förlorar du! \n" 
