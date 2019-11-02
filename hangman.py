@@ -66,7 +66,7 @@ def print_secret_word():
 while isPlaying:
     print_secret_word()
 
-    guess = input("Guess a letter: ").lower()
+    guess = input("Gissa en bokstav: ").lower()
     
     guessed_letter_count_secret_word = secret_word.count(guess)
     if len(guess) > 1: 
