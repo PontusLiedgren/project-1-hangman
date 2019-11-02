@@ -6,7 +6,7 @@
 import random
 
 # hälsning
-name = input("Vad heter du? ")
+name = input("Vad heter du? ").upper()
 
 # regler och information
 print(
@@ -52,7 +52,7 @@ isPlaying = True
 # funktion för gissade bokstäver. 
 def print_secret_word():
     print("-----------------------------------------------------------------------")
-    print("Spelare: " + name.upper() + "\n")
+    print("Spelare: " + name + "\n")
     print("Gissade bokstäver: " + str(guessed_letters))
     for letter in secret_word:
         if letter in guessed_letters:
@@ -89,5 +89,5 @@ while isPlaying:
             print("Du har redan gissat: " + guess + " \n")         
     if turns == 0:
         isPlaying = False
-        print("Oops!" + name + ", där hängdes en gubbe!") 
+        print("Oops! " + name + ", där hängdes en gubbe!") 
         print("Ordet var: " + secret_word.upper()) 
