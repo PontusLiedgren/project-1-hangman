@@ -1,0 +1,15 @@
+stockholm
+madrid
+moskva
+kabul
+oslo
+bagdad
+tokyo
+tunis
+ankara
+berlin
+helsingfors
+köpenhamn
+london
+beirut
+luxemburg
