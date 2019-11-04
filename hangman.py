@@ -57,5 +57,3 @@ while isPlaying:
         isPlaying = False
         print("Oops! Där hängdes en gubbe! Ordet var: " + secret_word.upper()) 
         
-        
-
