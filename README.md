@@ -1,2 +1,3 @@
 # project-1-hangman
-Hangman game in python. 
+
+Hangman game in Python 3. 
