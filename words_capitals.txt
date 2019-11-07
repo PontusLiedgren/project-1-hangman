@@ -32,3 +32,9 @@ zagreb
 prag
 bratislava
 ljubljana
+aten
+canberra
+damaskus
+hongkong
+jerusalem
+lima
