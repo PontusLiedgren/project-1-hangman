@@ -48,6 +48,8 @@ turns = 12
 guessed_letters = []
 correct_letters = []
 isPlaying = True
+hangedman = ("_____________________" + "\n| /                |" + "\n|/              (X c X)" + "\n|                --|--" + "\n|                 / \\" + "\n| Ordet var: " + secret_word.upper()  + "\n|_______________________")
+happyman = ("(OcO)\n" + "\\_|_\n" + " | |\\")
 
 # funktion för gissade bokstäver. 
 def print_secret_word():
@@ -80,7 +82,7 @@ while isPlaying:
                     correct_letters.append(guess) 
                 if(len(correct_letters) == len(secret_word)):
                     isPlaying = False
-                    print("Bra jobbat " + name + "! Du räddade gubben.")
+                    print("Bra jobbat " + name + "! Du räddade gubben.\n" + happyman)
                     print("Ordet var: " + secret_word.upper())
             else:
                 turns -= 1
@@ -89,5 +91,5 @@ while isPlaying:
             print("Du har redan gissat: " + guess + " \n")         
     if turns == 0:
         isPlaying = False
-        print("Oops! " + name + ", där hängdes en gubbe!") 
-        print("Ordet var: " + secret_word.upper()) 
+        print("Oops! " + name + ", där hängdes en gubbe!")
+        print(hangedman) 
