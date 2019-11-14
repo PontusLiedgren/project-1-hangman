@@ -3,7 +3,30 @@
 # Author: Pontus Liedgren, 2019
 # https://github.com/PontusLiedgren/project-1-hangman
 
+# imports
 import random
+
+# funktioner
+def read_txt_file(txt_file):
+    '''function for reading txt_files'''
+
+    with open(txt_file, encoding="utf-8") as text_file:
+        hangman_words = text_file.read().split("\n")
+    return hangman_words
+
+def print_secret_word():
+    '''function for guessed letters'''
+
+    print("-"*50)
+    print("Spelare: " + name + "\n")
+    print("Gissade bokstäver: " + str(guessed_letters))
+    for letter in secret_word:
+        if letter in guessed_letters:
+            print(letter.upper(), end=" ")
+        else:
+            print("_", end=" ")
+
+    print("")         
 
 # hälsning
 name = input("Vad heter du? ").upper()
@@ -27,20 +50,17 @@ word_theme = input("\n" + "Välj tema på det hemliga ordet: A: Huvudstäder | B
 # om temat är huvudstäder
 if word_theme == "a" or word_theme == "huvudstäder":
     print("Temat är huvudstäder!")
-    with open("words_capitals.txt", encoding="utf-8") as text_file:
-        hangman_words = text_file.read().split("\n")
+    hangman_words = read_txt_file("words_capitals.txt")
         
 # om temat är mat
 elif word_theme == "b" or word_theme == "mat":
     print("Temat är mat!")
-    with open("words_foods.txt", encoding="utf-8") as text_file:
-        hangman_words = text_file.read().split("\n")
+    hangman_words = read_txt_file("words_foods.txt")
         
 # om temat är blandat
 elif word_theme == "c" or word_theme == "blandat":
     print("Temat är blandat!")
-    with open("words_random.txt", encoding="utf-8") as text_file:
-        hangman_words = text_file.read().split("\n")
+    hangman_words = read_txt_file("words_random.txt")
 
 # start         
 secret_word = random.choice(hangman_words)
@@ -51,19 +71,6 @@ isPlaying = True
 hangedman = ("_____________________" + "\n| /                |" + "\n|/              (X c X)" + "\n|                --|--" + "\n|                 / \\" + "\n| Ordet var: " + secret_word.upper()  + "\n|_______________________")
 happyman = ("(OcO)\n" + "\\_|_\n" + " | |\\")
 
-# funktion för gissade bokstäver. 
-def print_secret_word():
-    print("-----------------------------------------------------------------------")
-    print("Spelare: " + name + "\n")
-    print("Gissade bokstäver: " + str(guessed_letters))
-    for letter in secret_word:
-        if letter in guessed_letters:
-            print(letter.upper(), end=" ")
-        else:
-            print("_", end=" ")
-
-    print("")          
-
 # huvudloop
 while isPlaying:
     print_secret_word()
@@ -71,7 +78,12 @@ while isPlaying:
     guess = input("Gissa en bokstav: ").lower()
     
     guessed_letter_count_secret_word = secret_word.count(guess)
-    if len(guess) > 1: 
+    if guess.lower() == secret_word.lower():
+        isPlaying = False
+        print("Bra jobbat " + name + "! Du räddade gubben.\n" + happyman)
+        print("Ordet var: " + secret_word.upper())
+        break
+    if len(guess) != 1: 
         print("Ogiltig inmatning! \n")
     if len(guess) == 1:
         if guess not in guessed_letters:
@@ -88,7 +100,7 @@ while isPlaying:
                 turns -= 1
                 print("Fel! Du har " + str(turns) + " gissningar kvar. \n")
         else: 
-            print("Du har redan gissat: " + guess + " \n")         
+            print("Du har redan gissat: " + guess + " \n") 
     if turns == 0:
         isPlaying = False
         print("Oops! " + name + ", där hängdes en gubbe!")
