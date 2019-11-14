@@ -29,11 +29,11 @@ def print_secret_word():
     print("")         
 
 # hälsning
-name = input("Vad heter du? ").upper()
+name = input("Vad heter du? ")
 
 # regler och information
 print(
-    "\n\n\nHejsan, " + name.upper() + "!" + " Välkommen till hängagubbe! " 
+    "\n\n\nHejsan, " + name + "!" + " Välkommen till hängagubbe! " 
     + "Målet med spelet är att lista ut det hemliga ordet.\n" 
     + "- Du har 12 gissningar på dig!\n" 
     + "- Om gissningarna tar slut innan du har listat ut ordet, förlorar du! \n" 
@@ -75,7 +75,7 @@ happyman = ("(OcO)\n" + "\\_|_\n" + " | |\\")
 while isPlaying:
     print_secret_word()
 
-    guess = input("Gissa en bokstav: ").lower()
+    guess = input("Gissning: ").lower()
     
     guessed_letter_count_secret_word = secret_word.count(guess)
     if guess.lower() == secret_word.lower():
