@@ -18,7 +18,8 @@ def print_secret_word():
     '''function for guessed letters'''
 
     print("-"*50)
-    print("Spelare: " + name + "\n")
+    print("Spelare: " + name)
+    print("Tema: " + word_theme + "\n")
     print("Gissade bokstäver: " + str(guessed_letters))
     for letter in secret_word:
         if letter in guessed_letters:
@@ -49,16 +50,19 @@ word_theme = input("\n" + "Välj tema på det hemliga ordet: A: Huvudstäder | B
 
 # om temat är huvudstäder
 if word_theme == "a" or word_theme == "huvudstäder":
+    word_theme = "Huvudstäder"
     print("Temat är huvudstäder!")
     hangman_words = read_txt_file("words_capitals.txt")
         
 # om temat är mat
 elif word_theme == "b" or word_theme == "mat":
+    word_theme = "Mat"
     print("Temat är mat!")
     hangman_words = read_txt_file("words_foods.txt")
         
 # om temat är blandat
 elif word_theme == "c" or word_theme == "blandat":
+    word_theme = "Blandat"
     print("Temat är blandat!")
     hangman_words = read_txt_file("words_random.txt")
 
