@@ -37,12 +37,14 @@ print(
     "\n\n\nHejsan, " + name + "!" + " Välkommen till hängagubbe! " 
     + "Målet med spelet är att lista ut det hemliga ordet.\n" 
     + "- Du har 12 gissningar på dig!\n" 
-    + "- Om gissningarna tar slut innan du har listat ut ordet, förlorar du! \n" 
-    + "- Om du har listat ut ordet innan gissningarna tar slut, vinner du! \n"
-    + "- Du kan bara gissa en bokstav i taget! \n" 
-    + "- Om bokstaven finns med i ordet förlorar du inga gissningar! \n"
-    + "- Om bokstaven inte finns med i ordet förlorar du en gissning! \n"
-    + "- Du kan inte gissa på flera bokstäver samtidigt!"
+    + "- Om gissningarna tar slut innan du har listat ut ordet, förlorar du. \n" 
+    + "- Om du har listat ut ordet innan gissningarna tar slut, vinner du. \n"
+    + "- Du kan gissa på hela ordet om din gissning är lika lång som ordet. \n"
+    + "- Om gissningen inte är lika långt som ordet eller bara en bokstav, då räknas gissningen som ogiltig. \n" 
+    + "- Om bokstaven finns med i ordet förlorar du inga gissningar. \n"
+    + "- Om bokstaven inte finns med i ordet förlorar du en gissning, samma sak om ordet du gissar på inte är rätt ord. \n"
+    + "\n"
+    + "PRO TIP! Gissa på enskilda bokstäver om du inte är helt säker på vilket det hemliga ordet är!"
     )
 
 # temat på hemliga ordet
@@ -82,12 +84,16 @@ while isPlaying:
     guess = input("Gissning: ").lower()
     
     guessed_letter_count_secret_word = secret_word.count(guess)
-    if guess.lower() == secret_word.lower():
-        isPlaying = False
-        print("Bra jobbat " + name + "! Du räddade gubben.\n" + happyman)
-        print("Ordet var: " + secret_word.upper())
-        break
-    if len(guess) != 1: 
+    if len(guess) == len(secret_word):
+        if guess.lower() != secret_word.lower():
+            turns -= 1
+            print("Fel! Du har " + str(turns) + " gissningar kvar. \n")
+        elif guess.lower() == secret_word.lower():
+            isPlaying = False
+            print("Bra jobbat, " + name + "! Du räddade gubben.\n" + happyman)
+            print("Ordet var: " + secret_word.upper())
+            break
+    if len(guess) != 1 or len(guess) != len(secret_word): 
         print("Ogiltig inmatning! \n")
     if len(guess) == 1:
         if guess not in guessed_letters:
@@ -98,7 +104,7 @@ while isPlaying:
                     correct_letters.append(guess) 
                 if(len(correct_letters) == len(secret_word)):
                     isPlaying = False
-                    print("Bra jobbat " + name + "! Du räddade gubben.\n" + happyman)
+                    print("Bra jobbat, " + name + "! Du räddade gubben.\n" + happyman)
                     print("Ordet var: " + secret_word.upper())
             else:
                 turns -= 1
