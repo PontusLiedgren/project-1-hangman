@@ -93,7 +93,7 @@ while isPlaying:
             print("Bra jobbat, " + name + "! Du räddade gubben.\n" + happyman)
             print("Ordet var: " + secret_word.upper())
             break
-    if len(guess) != 1 or len(guess) != len(secret_word): 
+    if  len(guess) > len(secret_word) or 1 < len(guess) < len(secret_word): 
         print("Ogiltig inmatning! \n")
     if len(guess) == 1:
         if guess not in guessed_letters:
